@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import QuestionCard from '../src/Components/QuestionCard'
 import {Difficulty, fetchQuizQuestions, QuestionState} from "./API";
 import {GlobalStyle} from "./App.styles";
+import useSound from 'use-sound';
+
+const url = "./music/btn.mp3";
 
 const TOTAL_QUESTIONS = 10;
 
@@ -19,6 +22,10 @@ const App: React.FC = () => {
     const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
     const [score, setScore] = useState(0);
     const [gameOver, setGameOver] = useState(true);
+
+    const sound = new Audio(url)
+
+
 
 
     const startTrivia = async () => {
@@ -38,6 +45,19 @@ const App: React.FC = () => {
     }
 
     const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
+
+        let playPromise = sound.play();
+
+        if (playPromise !== undefined) {
+            playPromise
+                .then(_ => {
+                    console.log("audio played auto");
+                })
+                .catch(error => {
+                    console.log("playback prevented");
+                });
+        }
+
         if (!gameOver) {
             const answer = e.currentTarget.value
 
@@ -65,6 +85,7 @@ const App: React.FC = () => {
             setNumber(nextQuestion)
         }
     }
+
 
     return (
         <>
