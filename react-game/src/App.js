@@ -7,10 +7,8 @@ import btnSound from './music/btn.mp3'
 import bcgSound from './music/bcg.mp3'
 import {DifficultySet} from "./Components/DifficultySet";
 import {menu, difficulty} from "./styles";
-
-
-const TOTAL_QUESTIONS = 10;
-
+import  {TopicSet} from './Components/TopicSet'
+import {NumberOfQuestions} from "./Components/NumberOfQuestions";
 
 const Difficulty =  {
   EASY: "easy",
@@ -27,6 +25,9 @@ const App = () => {
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
   const [difficulty, setDifficulty] = useState('easy');
+  const [category, setCategory] = useState('9');
+  const [settings, setSettings] = useState(false);
+  const [amount, setAmount] = useState(10);
 
   const [play] = useSound(btnSound);
 
@@ -45,10 +46,11 @@ const App = () => {
     setGameOver(false)
 
     const newQuestions = await fetchQuizQuestions(
-        TOTAL_QUESTIONS,
-        difficulty
+        amount,
+        difficulty,
+        category,
+        amount
     );
-
     setQuestions(newQuestions)
     setScore(0)
     setUserAnswers([])
@@ -60,7 +62,6 @@ const App = () => {
 
   const checkAnswer = (e) => {
     play()
-    console.log(difficulty)
     if (!gameOver) {
       const answer = e.currentTarget.value
 
@@ -80,9 +81,10 @@ const App = () => {
   }
 
   const nextQuestion = () => {
+    console.log(number, amount)
     const nextQuestion = number + 1;
 
-    if (nextQuestion === TOTAL_QUESTIONS) {
+    if (nextQuestion === amount) {
       setGameOver(true)
     } else {
       setNumber(nextQuestion)
@@ -93,42 +95,52 @@ const App = () => {
   return (
       <>
         <h1>REACT QUIZ</h1>
-        {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-            <div style={menu} className="menu">
-              <button className='start' onClick={startTrivia}>
-                Start
-              </button>
-              <button className='' onClick={playActive}>
-                Settings
-              </button>
-              <DifficultySet setdif={setDifficulty} classname="difficulty"/>
-              <button className=''>
-                Statistics
-              </button><button className=''>
-              Topics
-            </button>
-            </div>
+        {!settings ? (
+            <>
+              {gameOver || userAnswers.length === amount ? (
+                  <div style={menu} className="menu">
+                    <button className='start' onClick={startTrivia}>
+                      Start
+                    </button>
+                    <button className='' onClick={() => setSettings(!settings)}>
+                      Game Settings
+                    </button>
+                    <button className=''>
+                      Sound Settings
+                    </button><button className=''>
+                    Statistics
+                  </button>
+                  </div>
 
-        ) : null}
-        {!gameOver ? <p className='score'>Score: {score}</p> : null}
-        {loading ? <p>Loading Questions...</p> : null}
-        {!loading && !gameOver && (
-            <QuestionCard
-                questionNr={number + 1}
-                totalQuestions={TOTAL_QUESTIONS}
-                question={questions[number].question}
-                answers={questions[number].answers}
-                userAnswer={userAnswers ? userAnswers[number] : undefined}
-                callback={checkAnswer}
-            />
-        )}
-        {!gameOver && !loading && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 ? (
-            <button className='next' onClick={nextQuestion}>
-              Next Question
-            </button>
-        ) : null}
+              ) : null}
+              {!gameOver ? <p className='score'>Score: {score}</p> : null}
+              {loading ? <p>Loading Questions...</p> : null}
+              {!loading && !gameOver && (
+                  <QuestionCard
+                      questionNr={number + 1}
+                      totalQuestions={amount}
+                      question={questions[number].question}
+                      answers={questions[number].answers}
+                      userAnswer={userAnswers ? userAnswers[number] : undefined}
+                      callback={checkAnswer}
+                  />
+              )}
+              {!gameOver && !loading && userAnswers.length === number + 1 && number !== amount - 1 ? (
+                  <button className='next' onClick={nextQuestion}>
+                    Next Question
+                  </button>
+              ) : null }
+            </>
+        ): <div style={menu}>
+          <DifficultySet difficulty={difficulty} setdif={setDifficulty} classname="difficulty"/>
+          <TopicSet setTpc={setCategory} topic={category}/>
+          <NumberOfQuestions amount={amount} setAmount={setAmount}/>
+          <button className='' onClick={() => setSettings(!settings)}>
+            To Main Menu
+          </button>
+        </div>}
       </>
   );
-};
+}
 
 export default App;

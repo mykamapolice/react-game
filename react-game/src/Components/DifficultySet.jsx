@@ -4,34 +4,29 @@ import React from 'react'
 export class DifficultySet extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value: 'easy'};
+        this.state = {value: this.props.difficulty};
 
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(event) {
-        this.setState({value: event.target.value});
+
+    async handleChange(event) {
+        await this.setState({value: event.target.value});
+        await this.props.setdif(this.state.value)
     }
 
-    handleSubmit(event) {
-        this.props.setdif(this.state.value)
-        console.log(this.state.value)
-        event.preventDefault();
-    }
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form>
                 <label>
-                    Выберите ваш любимый вкус:
+                    Choose difficulty:
                     <select value={this.state.value} onChange={this.handleChange}>
-                        <option value="easy">Легко</option>
-                        <option value="medium">Средне</option>
-                        <option value="hard">Тяжко</option>
+                        <option value="easy">izi</option>
+                        <option value="medium">middle</option>
+                        <option value="hard">hard</option>
                     </select>
                 </label>
-                <input type="submit" value="Отправить" />
             </form>
         );
     }

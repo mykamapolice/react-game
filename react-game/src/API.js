@@ -1,7 +1,7 @@
 import {shuffleArray} from "./utils";
 
-export const fetchQuizQuestions = async (amount, difficulty) => {
-    const endpoint = `https://opentdb.com/api.php?amount=${amount}&difficulty=${difficulty}&type=multiple`
+export const fetchQuizQuestions = async (amount, difficulty, category) => {
+    const endpoint = `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=multiple`
     const data = await (await fetch((endpoint))).json();
     return data.results.map((question) => (
         {

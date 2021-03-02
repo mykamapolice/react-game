@@ -1,7 +1,4 @@
 import React from 'react'
-import {AnswerObject} from "../App";
-
-
 
 const QuestionCard = ({
                                            question,
