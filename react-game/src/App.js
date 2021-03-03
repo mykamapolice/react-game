@@ -100,11 +100,6 @@ const App = () => {
             setNumber(nextQuestion)
             console.log('im here')
         }
-        // if (gameOver) {
-        //     const wrapper = document.querySelector('.gameTable')
-        //     console.log('sdfs ' + wrapper)
-        //     wrapper.innerHTML = null;
-        // }
     }
 
 

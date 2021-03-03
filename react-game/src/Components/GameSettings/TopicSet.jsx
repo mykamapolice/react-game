@@ -17,8 +17,8 @@ export class TopicSet extends React.Component {
     render() {
         return (
             <form>
-                <label>
-                    Choose your topic:
+                <label className="box">
+                    Category
                     <select value={this.state.value} onChange={this.handleChange}>
                         <option value="9">General</option>
                         <option value="10">Books</option>

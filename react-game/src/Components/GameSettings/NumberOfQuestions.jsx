@@ -19,8 +19,8 @@ export class NumberOfQuestions extends React.Component {
     render() {
         return (
             <form>
-                <label>
-                    Choose your topic:
+                <label className="box">
+                    Questions number:
                     <select value={this.state.value} onChange={this.handleChange}>
                         <option value="5">5</option>
                         <option value="10">10</option>
