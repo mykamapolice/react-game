@@ -1,4 +1,4 @@
-import {menu} from "../styles";
+import {menu} from "../../styles";
 import {DifficultySet} from "./DifficultySet";
 import {TopicSet} from "./TopicSet";
 import {NumberOfQuestions} from "./NumberOfQuestions";

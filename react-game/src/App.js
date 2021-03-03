@@ -1,14 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import QuestionCard from '../src/Components/QuestionCard'
 import {fetchQuizQuestions} from "./API";
-import './App.module.css'
+import './App.css'
 import useSound from 'use-sound';
 import btnSound from './music/btn.mp3'
-import bcgSound from './music/bcg.mp3'
 import {menu} from "./styles";
-import Statistics from "./Components/Statistics";
-import SoundSettings from "./Components/SoundSettings";
-import GameSettings from "./Components/GameSettings";
+import Statistics from "./Components/Statistics/Statistics";
+import SoundSettings from "./Components/SoundSettings/SoundSettings";
+import GameSettings from "./Components/GameSettings/GameSettings";
 
 
 
@@ -26,20 +25,15 @@ const App = () => {
     const [statistic, setStatistic] = useState(false);
     const [soundSettings, setSoundSettings] = useState(false);
 
-    const [play] = useSound(btnSound);
+    const [volume, setVolume] = useState(0.75);
 
-    const [playActive] = useSound(
-        bcgSound,
-        {volume: 0.25}
+    const [play, {stop}] = useSound(
+        btnSound,
+        {
+            volume,
+            interrupt: true
+        },
     )
-
-    // useEffect(() => {
-    //   playActive()
-    // }, [])
-
-    console.log('Stat: ' + statistic)
-    console.log('soundSettings: ' + soundSettings)
-    console.log('settings: ' + settings)
 
     const startTrivia = async () => {
         setLoading(true)
@@ -56,6 +50,7 @@ const App = () => {
         setUserAnswers([])
         setNumber(0)
         setLoading(false)
+
     }
 
 
@@ -80,14 +75,19 @@ const App = () => {
     }
 
     const nextQuestion = () => {
-        console.log(number, amount)
         const nextQuestion = number + 1;
 
         if (nextQuestion === amount) {
             setGameOver(true)
         } else {
             setNumber(nextQuestion)
+            console.log('im here')
         }
+        // if (gameOver) {
+        //     const wrapper = document.querySelector('.gameTable')
+        //     console.log('sdfs ' + wrapper)
+        //     wrapper.innerHTML = null;
+        // }
     }
 
 
@@ -113,18 +113,20 @@ const App = () => {
                         </div>
 
                     ) : null}
-                    {!gameOver ? <p className='score'>Score: {score}</p> : null}
-                    {loading ? <p>Loading Questions...</p> : null}
-                    {!loading && !gameOver && (
-                        <QuestionCard
-                            questionNr={number + 1}
-                            totalQuestions={amount}
-                            question={questions[number].question}
-                            answers={questions[number].answers}
-                            userAnswer={userAnswers ? userAnswers[number] : undefined}
-                            callback={checkAnswer}
-                        />
-                    )}
+                    <div className="gameTable">
+                        {!gameOver ? <p className='score'>Score: {score}</p> : null}
+                        {loading ? <p>Loading Questions...</p> : null}
+                        {!loading && !gameOver && (
+                            <QuestionCard
+                                questionNr={number + 1}
+                                totalQuestions={amount}
+                                question={questions[number].question}
+                                answers={questions[number].answers}
+                                userAnswer={userAnswers ? userAnswers[number] : undefined}
+                                callback={checkAnswer}
+                            />
+                        )}
+                    </div>
                     {!gameOver && !loading && userAnswers.length === number + 1 && number !== amount - 1 ? (
                         <button className='next' onClick={nextQuestion}>
                             Next Question
@@ -134,7 +136,7 @@ const App = () => {
                 : statistic ?
                     <Statistics setStatistic={setStatistic} statistic={statistic}/>
                 : soundSettings ?
-                  <SoundSettings setSoundSettings={setSoundSettings} soundSettings={soundSettings}/>
+                  <SoundSettings setSoundSettings={setSoundSettings} soundSettings={soundSettings} stop={setVolume}/>
                 :
                   <GameSettings difficulty={difficulty} setDifficulty={setDifficulty}
                                 setCategory={setCategory} category={category}
