@@ -20,10 +20,10 @@ const SoundSettings = (props) => {
 
     return (
         <div>
-            <div> sound settings</div>
+            <div> Sound Settings</div>
             <div>
                 <span>Sound Volume</span>
-                <div>
+                <div className="button-wrapper">
                     <button onClick={() => props.stop(0)}>OFF</button>
                     <button onClick={() => props.stop(1)}>ON</button>
                 </div>
@@ -31,7 +31,7 @@ const SoundSettings = (props) => {
             <div>
                 <span>Music Volume</span>
                 <input type="range" min="0" max="1" step="0.001" onClick={e => changeVolume(e)}/>
-                <div>
+                <div className="button-wrapper">
                     <button onClick={() => stop()}>OFF</button>
                     <button onClick={play}>ON</button>
                 </div>

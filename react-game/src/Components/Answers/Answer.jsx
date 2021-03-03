@@ -10,7 +10,6 @@ export default class Answer extends React.Component {
         }
     }
     onKeyUp(keyName, e, handle) {
-        console.log("test:onKeyUp", e, handle)
         this.setState({
             output: `onKeyUp ${keyName}`,
         });
@@ -25,11 +24,10 @@ export default class Answer extends React.Component {
                 <div key = {this.props.answer.question}>
                     <button className="card" disabled={this.props.userAnswer ? true: false} value={this.props.answer.question} onClick={this.props.callback}>
                         {/*{this.props.userAnswer ? this.correctHotKey = this.props.answer.hotkey : null}*/}
-                        {this.props.userAnswer !== undefined && this.props.userAnswer.correct === true ?
-                            this.correctHotKey = this.props.answer.hotkey :
-                            null
-                        }
-                        {console.log('hi')}
+                        {/*{this.props.userAnswer !== undefined && this.props.userAnswer.correct === true ?*/}
+                        {/*    this.correctHotKey = this.props.answer.hotkey :*/}
+                        {/*    null*/}
+                        {/*}*/}
                         <span dangerouslySetInnerHTML={{__html: `${this.props.answer.hotkey} ${this.props.answer.question}`}}/>
                     </button>
                 </div>

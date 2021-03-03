@@ -36,8 +36,8 @@ const Statisctics = (props) => {
                 <table>
                     <tr>
                         <th>Category</th>
-                        <th>Incorrect</th>
                         <th>Correct</th>
+                        <th>Incorrect</th>
                     </tr>
                     {tableBody}
                 </table>

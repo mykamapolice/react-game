@@ -37,6 +37,7 @@ button {
   border: 4px solid #494949 !important;
   outline: none;
   transition: all 0.4s ease 0s;
+  font-size: 1.5rem;
 }
 button:hover {
   color: #ffffff !important;
@@ -89,4 +90,12 @@ button:hover {
 
 .box select option {
   padding: 30px;
+}
+.button-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+table {
+  width: 100%;
 }

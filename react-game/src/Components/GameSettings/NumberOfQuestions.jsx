@@ -11,8 +11,6 @@ export class NumberOfQuestions extends React.Component {
     async handleChange(event) {
         await this.setState({value: Number(event.target.value)});
         this.props.setAmount(this.state.value)
-        console.log(this.state.value)
-        // event.preventDefault();
     }
 
 

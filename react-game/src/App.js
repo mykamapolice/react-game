@@ -98,7 +98,6 @@ const App = () => {
             setGameOver(true)
         } else {
             setNumber(nextQuestion)
-            console.log('im here')
         }
     }
 
