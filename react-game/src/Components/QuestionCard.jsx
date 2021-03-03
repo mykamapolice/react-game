@@ -1,5 +1,6 @@
 import React from 'react'
 import './questionCard.css'
+import Answer from "./Answers/Answer";
 
 const QuestionCard = ({
                                            question,
@@ -10,6 +11,10 @@ const QuestionCard = ({
                                            totalQuestions,
                                        }) =>  {
 
+    const ans = answers.map( answer => {
+        return <Answer answer = {answer} callback={callback} userAnswer={userAnswer}/>
+    })
+
 
     return (
         <div>
@@ -18,13 +23,7 @@ const QuestionCard = ({
             </p>
             <p dangerouslySetInnerHTML={{__html: question}}/>
             <div>
-                {answers.map(answer => (
-                    <div key = {answer}>
-                        <button className="card" disabled={userAnswer ? true: false} value={answer} onClick={callback}>
-                            <span dangerouslySetInnerHTML={{__html: answer}}/>
-                        </button>
-                    </div>
-                ))}
+                {ans}
             </div>
         </div>
     )

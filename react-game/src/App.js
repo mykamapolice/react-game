@@ -61,7 +61,24 @@ const App = () => {
 
             const correct = questions[number].correct_answer === answer
 
-            if (correct) setScore(prev => prev + 1)
+            const item = JSON.parse(localStorage.getItem(category))
+
+            if (correct) {
+                setScore(prev => prev + 1)
+
+                {item ?
+                    localStorage.setItem(category, JSON.stringify({...item, correct: item.correct + 1}))
+                    : localStorage.setItem(category, JSON.stringify({incorrect: 0, correct: 1}))
+
+                }
+            } else {
+                let item = JSON.parse(localStorage.getItem(category))
+                {item ?
+                    localStorage.setItem(category, JSON.stringify({...item, incorrect: item.incorrect + 1}))
+                    : localStorage.setItem(category, JSON.stringify({incorrect: 0, correct: 1}))
+
+                }
+            }
 
             const answerObject = {
                 question: questions[number].question,

@@ -36,6 +36,7 @@
     ]
   },
   "devDependencies": {
+    "react-hot-keys": "^2.6.2",
     "styled-components": "^5.2.1",
     "use-sound": "^2.0.1"
   }
