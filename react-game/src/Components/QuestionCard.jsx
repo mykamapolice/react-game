@@ -1,6 +1,7 @@
 import React from 'react'
 import './questionCard.css'
 import Answer from "./Answers/Answer";
+import {useEffect} from "react/cjs/react.production.min";
 
 const QuestionCard = ({
                                            question,
@@ -12,9 +13,8 @@ const QuestionCard = ({
                                        }) =>  {
 
     const ans = answers.map( answer => {
-        return <Answer answer = {answer} callback={callback} userAnswer={userAnswer}/>
+        return <Answer answer = {answer} callback={callback} userAnswer={userAnswer} />
     })
-
 
     return (
         <div>

@@ -11,7 +11,6 @@ export const fetchQuizQuestions = async (amount, difficulty, category) => {
         for(let i=0; i<4; i++) {
             arr.push({question: a[i], hotkey: hotkeys[i]})
         }
-        console.log(arr)
         return {
             ...question,
             answers: arr

@@ -1,37 +1,27 @@
-import React from "react";
-import Hotkeys from 'react-hot-keys';
+import React, {useEffect, ReactElement} from 'react';
 
-export default class Answer extends React.Component {
-    constructor(props) {
-        super(props);
-        this.correctHotKey = null
-        this.state = {
-            output: 'Hello, I am a component that listens to keydown and keyup of a',
+function Answer(props) {
+
+    const handleAnswerChange = (e) => {
+        if (e.key === 'y') {
+            alert('The sky is your starting point!')
+        } else if (e.key === 'n') {
+            alert('The sky is your limit👀')
         }
     }
-    onKeyUp(keyName, e, handle) {
-        this.setState({
-            output: `onKeyUp ${keyName}`,
-        });
-    }
 
-    render() {
+        useEffect(() => {
+            window.addEventListener('keydown', handleAnswerChange);
+        });
+
         return (
-            <Hotkeys
-                keyName="a, b, c, d"
-                onKeyUp={this.onKeyUp.bind(this)}
-            >
-                <div key = {this.props.answer.question}>
-                    <button className="card" disabled={this.props.userAnswer ? true: false} value={this.props.answer.question} onClick={this.props.callback}>
-                        {/*{this.props.userAnswer ? this.correctHotKey = this.props.answer.hotkey : null}*/}
-                        {/*{this.props.userAnswer !== undefined && this.props.userAnswer.correct === true ?*/}
-                        {/*    this.correctHotKey = this.props.answer.hotkey :*/}
-                        {/*    null*/}
-                        {/*}*/}
-                        <span dangerouslySetInnerHTML={{__html: `${this.props.answer.hotkey} ${this.props.answer.question}`}}/>
+            <div key={props.answer.question}>
+                    <button type="submit" id={props.answer.hotkey} className={"card"} disabled={props.userAnswer ? true : false}
+                            value={props.answer.question} onClick={props.callback} onKeyPress={props.callback}>
+                        <span dangerouslySetInnerHTML={{__html: `${props.answer.hotkey} ${props.answer.question}`}}/>
                     </button>
-                </div>
-            </Hotkeys>
+            </div>
         )
-    }
 }
+
+export default Answer
