@@ -13,11 +13,10 @@ export class NumberOfQuestions extends React.Component {
         this.props.setAmount(this.state.value)
     }
 
-
     render() {
         return (
             <form>
-                <label className="box">
+                <label className="select">
                     Questions number:
                     <select value={this.state.value} onChange={this.handleChange}>
                         <option value="5">5</option>

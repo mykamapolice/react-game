@@ -17,7 +17,7 @@ export class TopicSet extends React.Component {
     render() {
         return (
             <form>
-                <label className="box">
+                <label className="select">
                     Category
                     <select value={this.state.value} onChange={this.handleChange}>
                         <option value="9">General</option>

@@ -25,7 +25,7 @@ const App = () => {
     const [statistic, setStatistic] = useState(false);
     const [soundSettings, setSoundSettings] = useState(false);
 
-    const [volume, setVolume] = useState(0.75);
+    const [volume, setVolume] = useState(0.75)
 
     useEffect(() => {
         const setKey = (event) => {
@@ -37,7 +37,7 @@ const App = () => {
             }
         }
         document.addEventListener('keydown', setKey);
-    });
+    }, []);
 
     const [play, {stop}] = useSound(
         btnSound,
@@ -168,6 +168,6 @@ const App = () => {
               }
         </>
     );
-};
+}
 
 export default App;

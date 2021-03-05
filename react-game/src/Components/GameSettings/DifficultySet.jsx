@@ -19,7 +19,7 @@ export class DifficultySet extends React.Component {
     render() {
         return (
             <form>
-                <label className="box">
+                <label className="select">
                     Difficulty:
                     <select value={this.state.value} onChange={this.handleChange}>
                         <option value="easy">izi</option>
