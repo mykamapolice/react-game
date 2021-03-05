@@ -1,6 +1,14 @@
 import StatisticItem from "./StatisticsItem";
+import React, {useState} from "react";
 
 const Statisctics = (props) => {
+
+    const [, updateState] = React.useState();
+
+    const useForceUpdate = () => {
+        localStorage.clear()
+        updateState(' ')
+    }
 
     const categories = {
         9: 'General',
@@ -27,8 +35,6 @@ const Statisctics = (props) => {
         return <StatisticItem name={el.categoryName} incorrect={el.incorrect} correct={el.correct} key={el.categoryName}/>
     })
 
-    console.log(keys)
-
     return (
         <div>
             <div> Statistics </div>
@@ -46,7 +52,7 @@ const Statisctics = (props) => {
             <button className='' onClick={() => props.setStatistic(!props.statistic)}>
                 To Main Menu
             </button>
-            <button className='' onClick={() => localStorage.clear()}>
+            <button className='' onClick={useForceUpdate}>
                 Clear all Statistics
             </button>
         </div>

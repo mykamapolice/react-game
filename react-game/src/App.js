@@ -27,6 +27,18 @@ const App = () => {
 
     const [volume, setVolume] = useState(0.75);
 
+    useEffect(() => {
+        const setKey = (event) => {
+            if(event.key === ' ') {
+                const btn = document.querySelector(`#next`)
+                if (btn !== null) {
+                    btn.click()
+                }
+            }
+        }
+        document.addEventListener('keydown', setKey);
+    });
+
     const [play, {stop}] = useSound(
         btnSound,
         {
@@ -139,8 +151,8 @@ const App = () => {
                         )}
                     </div>
                     {!gameOver && !loading && userAnswers.length === number + 1 && number !== amount - 1 ? (
-                        <button className='next' onClick={nextQuestion}>
-                            Next Question
+                        <button id='next' onClick={nextQuestion}>
+                            Next Question ( space )
                         </button>
                     ) : null}
                 </>

@@ -1,7 +1,6 @@
 import React from 'react'
 import './questionCard.css'
 import Answer from "./Answers/Answer";
-import {useEffect} from "react/cjs/react.production.min";
 
 const QuestionCard = ({
                                            question,
