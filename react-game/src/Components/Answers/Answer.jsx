@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react';
 
 function Answer({ answer, callback, userAnswer }) {
-  useEffect(() => {
-    const setKey = (event) => {
-      if (event.key !== ' ') {
-        const btn = document.querySelector(`#${event.key}`);
-        if (btn !== null) {
-          btn.click();
-        }
+  const setKey = (event) => {
+    if (event.key !== ' ') {
+      const btn = document.querySelector(`#${event.key}`);
+      if (btn !== null) {
+        btn.click();
       }
-    };
+    }
+  };
+  useEffect(() => {
     document.addEventListener('keydown', setKey);
+    return () => {
+      window.removeEventListener('keydown', setKey);
+    };
   }, []);
 
   return (

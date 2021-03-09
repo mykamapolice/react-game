@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import StatisticItem from './StatisticsItem';
 
 const Statisctics = (props) => {
-  const [, updateState] = useState();
-
   const useForceUpdate = () => {
     localStorage.clear();
-    updateState(' ');
   };
 
   const categories = {
