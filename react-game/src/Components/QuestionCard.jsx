@@ -19,6 +19,7 @@ const QuestionCard = ({
         <div>
             <p className="number">
                 Question: {questionNr} / {totalQuestions}
+                <p>hotkeys - ( a b c d space ) ENGLISH LAYOUT!!!</p>
             </p>
             <p dangerouslySetInnerHTML={{__html: question}}/>
             <div>
