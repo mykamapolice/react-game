@@ -1,19 +1,27 @@
-import {menu} from "../../styles";
-import {DifficultySet} from "./DifficultySet";
-import {TopicSet} from "./TopicSet";
-import {NumberOfQuestions} from "./NumberOfQuestions";
+import React from 'react';
+import { menu } from '../../styles';
+import DifficultySet from './DifficultySet';
+import TopicSet from './TopicSet';
+import NumberOfQuestions from './NumberOfQuestions';
 
-const GameSettings = (props) => {
-    return(
-        <div style={menu}>
-            <DifficultySet difficulty={props.difficulty} setdif={props.setDifficulty} classname="difficulty"/>
-            <TopicSet setTpc={props.setCategory} topic={props.category}/>
-            <NumberOfQuestions amount={props.amount} setAmount={props.setAmount}/>
-            <button className='' onClick={() => props.setSettings(!props.settings)}>
-                To Main Menu
-            </button>
-        </div>
-    )
-}
+const GameSettings = ({
+  difficulty,
+  setAmount,
+  amount,
+  category,
+  setCategory,
+  setDifficulty,
+  setSettings,
+  settings,
+}) => (
+  <div style={menu}>
+    <DifficultySet difficulty={difficulty} setdif={setDifficulty} classname="difficulty" />
+    <TopicSet setTpc={setCategory} topic={category} />
+    <NumberOfQuestions amount={amount} setAmount={setAmount} />
+    <button type="button" className="" onClick={() => setSettings(!settings)}>
+      To Main Menu
+    </button>
+  </div>
+);
 
-export default GameSettings
+export default GameSettings;

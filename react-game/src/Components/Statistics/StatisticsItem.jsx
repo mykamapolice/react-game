@@ -1,11 +1,11 @@
-const StatisticItem = (props) => {
-    return (
-        <tr>
-        <td>{props.name}</td>
-        <td>{props.correct}</td>
-        <td>{props.incorrect}</td>
-    </tr>
-    )
-}
+import React from 'react';
 
-export default StatisticItem
+const StatisticItem = ({ name, correct, incorrect }) => (
+  <tr>
+    <td>{name}</td>
+    <td>{correct}</td>
+    <td>{incorrect}</td>
+  </tr>
+);
+
+export default StatisticItem;

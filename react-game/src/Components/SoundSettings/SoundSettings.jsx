@@ -1,46 +1,45 @@
-import {useState} from "react";
-import useSound from "use-sound";
-import bcgSound from "../../music/bcg.mp3";
+import React, { useState } from 'react';
+import useSound from 'use-sound';
+import bcgSound from '../../music/bcg.mp3';
 
 const SoundSettings = (props) => {
+  const [volume, setVolume] = useState(0.75);
 
-    const [volume, setVolume] = useState(0.75);
+  const [play, { stop }] = useSound(
+    bcgSound,
+    {
+      volume,
+      interrupt: true,
+    },
+  );
 
-    const [play, {stop}] = useSound(
-        bcgSound,
-        {
-            volume,
-            interrupt: true
-        },
-    )
+  function changeVolume(e) {
+    setVolume(e.target.value);
+  }
 
-    function changeVolume(e) {
-        setVolume(e.target.value)
-    }
-
-    return (
-        <div>
-            <div> Sound Settings</div>
-            <div>
-                <span>Sound Volume</span>
-                <div className="button-wrapper">
-                    <button onClick={() => props.stop(0)}>OFF</button>
-                    <button onClick={() => props.stop(1)}>ON</button>
-                </div>
-            </div>
-            <div>
-                <span>Music Volume</span>
-                <input type="range" min="0" max="1" step="0.001" onClick={e => changeVolume(e)}/>
-                <div className="button-wrapper">
-                    <button onClick={() => stop()}>OFF</button>
-                    <button onClick={play}>ON</button>
-                </div>
-            </div>
-            <button className='' onClick={() => props.setSoundSettings(!props.soundSettings)}>
-                To Main Menu
-            </button>
+  return (
+    <div>
+      <div> Sound Settings</div>
+      <div>
+        <span>Sound Volume</span>
+        <div className="button-wrapper">
+          <button type="button" onClick={() => props.stop(0)}>OFF</button>
+          <button type="button" onClick={() => props.stop(1)}>ON</button>
         </div>
-    )
-}
+      </div>
+      <div>
+        <span>Music Volume</span>
+        <input type="range" min="0" max="1" step="0.001" onClick={(e) => changeVolume(e)} />
+        <div className="button-wrapper">
+          <button type="button" onClick={() => stop()}>OFF</button>
+          <button type="button" onClick={play}>ON</button>
+        </div>
+      </div>
+      <button type="button" className="" onClick={() => props.setSoundSettings(!props.soundSettings)}>
+        To Main Menu
+      </button>
+    </div>
+  );
+};
 
-export default SoundSettings
+export default SoundSettings;
