@@ -1,1 +1,6 @@
-# react-game
+ - Clone this repository with command `git clone`
+ - Open It in your IDE
+ - Go to the folder react-game\react-game
+ - Write `npm i` to install dependencies
+ -  Write `npm start` to start the app
+ - Enjoy :)
