@@ -1,8 +1,8 @@
 import React from 'react';
 import { menu } from '../../styles';
-import DifficultySet from './DifficultySet';
-import TopicSet from './TopicSet';
-import NumberOfQuestions from './NumberOfQuestions';
+import DifficultySet from './SetSettings/DifficultySet';
+import TopicSet from './SetSettings/TopicSet';
+import NumberOfQuestions from './SetSettings/NumberOfQuestions';
 
 const GameSettings = ({
   difficulty,

@@ -1,5 +1,5 @@
 import React from 'react';
-import StatisticItem from './StatisticsItem';
+import StatisticCell from './StatisticsCell/StatisticsCell';
 
 const Statisctics = (props) => {
   const useForceUpdate = () => {
@@ -28,7 +28,7 @@ const Statisctics = (props) => {
   });
 
   const tableBody = allStatistics.map((el) => (
-    <StatisticItem
+    <StatisticCell
       name={el.categoryName}
       incorrect={el.incorrect}
       correct={el.correct}

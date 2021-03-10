@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useSound from 'use-sound';
-import QuestionCard from './Components/QuestionCard';
+import QuestionCard from './Components/Questions/QuestionCard';
 import fetchQuizQuestions from './API';
 import './App.css';
 import btnSound from './music/btn.mp3';
@@ -52,6 +52,10 @@ const App = () => {
   const startTrivia = async () => {
     setLoading(true);
     setGameOver(false);
+    console.log(amount,
+      difficulty,
+      category,
+      amount);
 
     const newQuestions = await fetchQuizQuestions(
       amount,
@@ -88,7 +92,7 @@ const App = () => {
           ? localStorage.setItem(category, JSON.stringify({
             ...item,
             incorrect:
-                    item.incorrect + 1,
+                            item.incorrect + 1,
           }))
           : localStorage.setItem(category, JSON.stringify({ incorrect: 0, correct: 1 }));
       }
@@ -117,7 +121,7 @@ const App = () => {
   return (
     <>
       <h1>REACT QUIZ</h1>
-      { !settings && !statistic && !soundSettings ? (
+      {!settings && !statistic && !soundSettings ? (
         <>
           {gameOver || userAnswers.length === amount ? (
             <div style={menu} className="menu">

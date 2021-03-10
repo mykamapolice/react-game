@@ -1,6 +1,6 @@
 import React from 'react';
 
-const StatisticItem = ({ name, correct, incorrect }) => (
+const StatisticCell = ({ name, correct, incorrect }) => (
   <tr>
     <td>{name}</td>
     <td>{correct}</td>
@@ -8,4 +8,4 @@ const StatisticItem = ({ name, correct, incorrect }) => (
   </tr>
 );
 
-export default StatisticItem;
+export default StatisticCell;

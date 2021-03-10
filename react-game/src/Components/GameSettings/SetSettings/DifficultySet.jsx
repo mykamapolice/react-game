@@ -10,9 +10,8 @@ class DifficultySet extends React.Component {
 
   async handleChange(event) {
     const { setdif } = this.props;
-    const { state } = this;
     await this.setState({ value: event.target.value });
-    await setdif(state.value);
+    await setdif(event.target.value);
   }
 
   render() {

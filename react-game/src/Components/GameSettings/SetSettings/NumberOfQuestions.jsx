@@ -9,9 +9,8 @@ class NumberOfQuestions extends React.Component {
 
   async handleChange(event) {
     const { setAmount } = this.props;
-    const { state } = this;
     await this.setState({ value: Number(event.target.value) });
-    setAmount(state.value);
+    setAmount(event.target.value);
   }
 
   render() {

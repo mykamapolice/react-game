@@ -9,9 +9,8 @@ class TopicSet extends React.Component {
 
   async handleChange(event) {
     const { setTpc } = this.props;
-    const { state } = this;
     await this.setState({ value: event.target.value });
-    setTpc(state.value);
+    setTpc(event.target.value);
   }
 
   render() {

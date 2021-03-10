@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-function Answer({ answer, callback, userAnswer }) {
+function Question({ answer, callback, userAnswer }) {
   const setKey = (event) => {
     if (event.key !== ' ') {
       const btn = document.querySelector(`#${event.key}`);
@@ -35,4 +35,4 @@ function Answer({ answer, callback, userAnswer }) {
   );
 }
 
-export default Answer;
+export default Question;

@@ -1,6 +1,6 @@
 import React from 'react';
 import './questionCard.css';
-import Answer from './Answers/Answer';
+import Question from './Question/Question';
 
 const QuestionCard = ({
   question,
@@ -11,7 +11,7 @@ const QuestionCard = ({
   totalQuestions,
 }) => {
   const ans = answers.map((answer) => (
-    <Answer
+    <Question
       answer={answer}
       callback={callback}
       userAnswer={userAnswer}
@@ -21,7 +21,6 @@ const QuestionCard = ({
   return (
     <div>
       <p className="number">
-        s
         Question:
         {questionNr}
         {' '}
